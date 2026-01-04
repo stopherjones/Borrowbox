@@ -1,20 +1,24 @@
-<input id="q" placeholder="Search audiobooks">
-<button onclick="go()">Search</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BorrowBox Multi Search</title>
+</head>
+<body>
+  <h1>BorrowBox Multi Search</h1>
+  <input id="q" placeholder="Search audiobooks">
+  <button onclick="go()">Search All</button>
 
-<div style="display:flex; gap:1rem;">
-  <iframe id="east" width="33%" height="800"></iframe>
-  <iframe id="leeds" width="33%" height="800"></iframe>
-  <iframe id="nyorks" width="33%" height="800"></iframe>
-</div>
-
-<script>
-function go() {
-  const term = encodeURIComponent(document.getElementById('q').value);
-  document.getElementById('east').src =
-    "https://eastriding.borrowbox.com/search?format=eAudiobooks&q=" + term;
-  document.getElementById('leeds').src =
-    "https://leeds.borrowbox.com/search?format=eAudiobooks&q=" + term;
-  document.getElementById('nyorks').src =
-    "https://northyorkshire.borrowbox.com/search?format=eAudiobooks&q=" + term;
-}
-</script>
+  <script>
+    function go() {
+      const term = encodeURIComponent(document.getElementById('q').value);
+      const libs = [
+        "https://eastriding.borrowbox.com/search?format=eAudiobooks&q=",
+        "https://leeds.borrowbox.com/search?format=eAudiobooks&q=",
+        "https://northyorkshire.borrowbox.com/search?format=eAudiobooks&q="
+      ];
+      libs.forEach(url => window.open(url + term, "_blank"));
+    }
+  </script>
+</body>
+</html>
